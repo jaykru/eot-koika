@@ -49,7 +49,7 @@ Definition _do_compare_swap idxL idxR: uaction reg_t empty_ext_fn_t :=
         (* let par := #par in *)
         (* guard((!read0(clock) && !par) || (read0(clock) && par)); *)
         let left_val := `rL` in
-        let right_val := `rL` in
+        let right_val := `rR` in
         if left_val > right_val then
           wR(left_val);
           wL(right_val)
