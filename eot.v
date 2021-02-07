@@ -1,4 +1,3 @@
-(*! Representing vectors of registers using Coq inductives !*)
 Require Import Koika.Frontend.
 
 (* the number of things you can sort is currently fixed because Coq
@@ -8,7 +7,7 @@ Definition reg_sz := 32. (* we support sorting 32-bit integers *)
 Definition clock_sz := 1.
 
 Inductive reg_t := rData (n: Vect.index num_procs) | clock.
-Inductive rule_name_t := do_compare_swap(n: Vect.index num_procs) | tick.
+Inductive rule_name_t := do_swap_evens | do_swap_odds | tick.
 
 Notation index_sz := (log2 num_procs).
 
@@ -40,89 +39,74 @@ Definition write_vect idx: UInternalFunction reg_t empty_ext_fn_t :=
       write1(rData idx, val)
   }}.
 Check write_vect.
-Definition _do_compare_swap (parity: nat) idxL idxR: uaction reg_t empty_ext_fn_t :=
+
+Definition _do_compare_swap idxL idxR: uaction reg_t empty_ext_fn_t :=
   let wL := write_vect idxL in
   let wR := write_vect idxR in
   let rL := read_vect idxL in
   let rR := read_vect idxR in
-  let par := Bits.of_nat 1 parity in
-  {{
-      let par := #par in
-      guard((!read0(clock) && !par) || (read0(clock) && par));
-      let left_val := `rL` in
-      let right_val := `rL` in
-      if left_val > right_val then
-        wR(left_val);
-        wL(right_val)
-      else
-        pass
-  }}.
+    {{
+        (* let par := #par in *)
+        (* guard((!read0(clock) && !par) || (read0(clock) && par)); *)
+        let left_val := `rL` in
+        let right_val := `rL` in
+        if left_val > right_val then
+          wR(left_val);
+          wL(right_val)
+        else
+          pass
+    }}.
 
 Require Import Magic.
 Definition do_comp_swap :=
   Eval vm_compute in
-    (tc_rule R empty_Sigma (_do_compare_swap 0 __magic__ __magic__)).
+    (tc_rule R empty_Sigma (_do_compare_swap __magic__ __magic__)).
 
-Notation EVEN := 0.
-Notation ODD := 1.
+Definition _do_swap_evens_rules :=
+  let evens := List.filter (fun n => Nat.even n) (List.seq 0 (num_procs)) in
+  List.map
+  (fun e => _do_compare_swap
+           (match @index_of_nat _ e with
+            | Some i => i
+            | _ => __magic__
+            end)
+           (match @index_of_nat _ (e+1) with
+              | Some i => i
+              | _ => __magic__
+              end))
+  evens.
+Print _do_swap_evens_rules.
+              
+Definition _do_swap_odds_rules :=
+  let odds := List.filter (fun n => Nat.odd n) (List.seq 0 (num_procs-1)) in
+  List.map
+    (fun e => _do_compare_swap
+             (match @index_of_nat _ e with
+              | Some i => i
+              | _ => __magic__
+              end)
+             (match @index_of_nat _ (e+1) with
+              | Some i => i
+              | _ => __magic__
+              end))
+    odds.
+Print _do_swap_odds_rules.
 
-Definition blah: index num_procs.
-  constructor.
-Defined.
+Definition _do_swap_evens := USugar (UProgn ({{ guard(!read0(clock)) }} :: _do_swap_evens_rules)).
+Definition _do_swap_odds := USugar (UProgn ({{ guard(read0(clock)) }} :: _do_swap_odds_rules)).
 
 Definition rules : rule_name_t -> rule R empty_Sigma :=
   Eval vm_compute in
     (tc_rules R empty_Sigma (fun rl => match rl with
-                                   | do_compare_swap i =>
-                                     let e := (index_to_nat i) in 
-                                     match Nat.modulo e 2 with 
-                                     | 0 => _do_compare_swap
-                                             EVEN
-                                             i
-                                             (match @index_of_nat _ (e+1) with
-                                              | Some i' => i'
-                                              | _ => __magic__
-                                              end)
-                                     | _ => _do_compare_swap
-                                             ODD
-                                             i
-                                             (match @index_of_nat _ (e+1) with
-                                              | Some i' => i'
-                                              | _ => __magic__
-                                              end)
-                                     end
+                                   | do_swap_evens => 
+                                     _do_swap_evens
+                                   | do_swap_odds => 
+                                     _do_swap_odds
                                    | tick => {{ write0(clock, read0(clock) + |clock_sz`d1|) }}
                                    end)).
 
-Require Import Magic.
-Definition even_rules := 
-  (* upto N - 1 because we want the final processor to be involved in
-  an odd exchange. the final processor is even, since we take N even,
-  so this should work *)
-  let evens := List.filter (fun n => Nat.even n) (List.seq 0 (num_procs - 2)) in
-  (fun e =>
-              let left_ind := (match index_of_nat _ e with Some i => i | _ => __magic__ end) in
-              let right_ind := (match index_of_nat _ (e+1) with Some i => i | _ => __magic__ end) in
-              let swap := do_compare_swap_rl false left_ind right_ind in
-              {{
-                  swap
-              }}
-           ) (List.nth 0 evens 0).
-  
-
-Definition _incr_index : uaction reg_t empty_ext_fn_t :=
-  {{ write0(rIndex, read0(rIndex) + |index_sz`d1|) }}.
-
-Definition rules :=
-  tc_rules R empty_Sigma
-           (fun rl => match rl with
-                   | read_reg_sequential => _read_reg_sequential
-                   | read_reg_tree => _read_reg_tree
-                   | incr_index => _incr_index
-                   end).
-
 Definition regfile : scheduler :=
-  read_reg_sequential |> read_reg_tree |> incr_index |> done.
+  do_swap_evens |> do_swap_odds |> tick |> done.
 
 Definition external (r: rule_name_t) := false.
 
@@ -136,7 +120,7 @@ Definition package :=
                    koika_rules := rules;
                    koika_rule_external := external;
                    koika_scheduler := regfile;
-                   koika_module_name := "vector" |};
+                   koika_module_name := "evenoddtranspose" |};
 
      ip_sim := {| sp_ext_fn_specs := empty_ext_fn_props;
                   sp_prelude := None |};
