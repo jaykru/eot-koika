@@ -8,7 +8,7 @@
 #ifndef _VEVENODDTRANSPOSE_H_
 #define _VEVENODDTRANSPOSE_H_  // guard
 
-#include "verilated.h"
+#include "verilated_heavy.h"
 #include "Vevenoddtranspose__Dpi.h"
 
 //==========
@@ -67,9 +67,7 @@ VL_MODULE(Vevenoddtranspose) {
     void final();
     
     // INTERNAL METHODS
-  private:
     static void _eval_initial_loop(Vevenoddtranspose__Syms* __restrict vlSymsp);
-  public:
     void __Vconfigure(Vevenoddtranspose__Syms* symsp, bool first);
   private:
     static QData _change_request(Vevenoddtranspose__Syms* __restrict vlSymsp);

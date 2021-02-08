@@ -1,7 +1,10 @@
 pyverilator_wrapper.o: ../obj_dir/pyverilator_wrapper.cpp \
-  /usr/local/Cellar/verilator/4.102/share/verilator/include/verilated.h \
-  /usr/local/Cellar/verilator/4.102/share/verilator/include/verilatedos.h \
-  /usr/local/Cellar/verilator/4.102/share/verilator/include/verilated_vcd_c.h \
-  /usr/local/Cellar/verilator/4.102/share/verilator/include/verilated_trace.h \
-  Vevenoddtranspose.h Vevenoddtranspose__Dpi.h \
-  /usr/local/Cellar/verilator/4.102/share/verilator/include/vltstd/svdpi.h
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/verilated.h \
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/verilatedos.h \
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/verilated_vcd_c.h \
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/verilated.h \
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/verilated_trace.h \
+ ../obj_dir/Vevenoddtranspose.h \
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/verilated_heavy.h \
+ ../obj_dir/Vevenoddtranspose__Dpi.h \
+ /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator/include/vltstd/svdpi.h

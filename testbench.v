@@ -1,17 +1,17 @@
 module testbench;
 
- reg reset = 0;
+ reg reset = 1;
  initial
   begin
-     $dumpfile("test.vcd");
-     $dumpvars(0,test);
+     $dumpfile("icarus_test.vcd");
+     $dumpvars(0,testbench);
   end
  
  reg clk = 0;
  always #1 clk = !clk;
 
- evenoddtranspose test_eot (clk, reset)
- 
+ evenoddtranspose test_eot (clk, reset);
+
  initial
-  $monitor("at time %t", $time);
+	$monitor("hello world");
 endmodule

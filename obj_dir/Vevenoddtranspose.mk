@@ -10,7 +10,7 @@ default: Vevenoddtranspose
 # Perl executable (from $PERL)
 PERL = perl
 # Path to Verilator kit (from $VERILATOR_ROOT)
-VERILATOR_ROOT = /usr/local/Cellar/verilator/4.102/share/verilator
+VERILATOR_ROOT = /nix/store/jcmnqzhnbxwbfph7dxi246f3w4ydrcmh-verilator-4.108/share/verilator
 # SystemC include directory with systemc.h (from $SYSTEMC_INCLUDE)
 SYSTEMC_INCLUDE ?= 
 # SystemC library directory with libsystemc.a (from $SYSTEMC_LIBDIR)

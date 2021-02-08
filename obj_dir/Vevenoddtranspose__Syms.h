@@ -7,7 +7,7 @@
 #ifndef _VEVENODDTRANSPOSE__SYMS_H_
 #define _VEVENODDTRANSPOSE__SYMS_H_  // guard
 
-#include "verilated.h"
+#include "verilated_heavy.h"
 
 // INCLUDE MODULE CLASSES
 #include "Vevenoddtranspose.h"
@@ -34,7 +34,7 @@ class Vevenoddtranspose__Syms : public VerilatedSyms {
     
     // CREATORS
     Vevenoddtranspose__Syms(Vevenoddtranspose* topp, const char* namep);
-    ~Vevenoddtranspose__Syms() {}
+    ~Vevenoddtranspose__Syms();
     
     // METHODS
     inline const char* name() { return __Vm_namep; }

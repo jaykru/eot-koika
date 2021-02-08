@@ -8,6 +8,10 @@
 
 
 // FUNCTIONS
+Vevenoddtranspose__Syms::~Vevenoddtranspose__Syms()
+{
+}
+
 Vevenoddtranspose__Syms::Vevenoddtranspose__Syms(Vevenoddtranspose* topp, const char* namep)
     // Setup locals
     : __Vm_namep(namep)

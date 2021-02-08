@@ -49,6 +49,8 @@ void Vevenoddtranspose::final() {
 void Vevenoddtranspose::_eval_settle(Vevenoddtranspose__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vevenoddtranspose::_eval_settle\n"); );
     Vevenoddtranspose* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    vlSymsp->TOP__evenoddtranspose._settle__TOP__evenoddtranspose__3(vlSymsp);
 }
 
 void Vevenoddtranspose::_ctor_var_reset() {
@@ -56,7 +58,7 @@ void Vevenoddtranspose::_ctor_var_reset() {
     // Body
     CLK = VL_RAND_RESET_I(1);
     RST_N = VL_RAND_RESET_I(1);
-    { int __Vi0=0; for (; __Vi0<1; ++__Vi0) {
-            __Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
-    }}
+    for (int __Vi0=0; __Vi0<1; ++__Vi0) {
+        __Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
+    }
 }

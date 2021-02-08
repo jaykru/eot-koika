@@ -5,7 +5,7 @@
 #ifndef _VEVENODDTRANSPOSE_EVENODDTRANSPOSE_H_
 #define _VEVENODDTRANSPOSE_EVENODDTRANSPOSE_H_  // guard
 
-#include "verilated.h"
+#include "verilated_heavy.h"
 #include "Vevenoddtranspose__Dpi.h"
 
 //==========
@@ -27,7 +27,137 @@ VL_MODULE(Vevenoddtranspose_evenoddtranspose) {
     // Anonymous structures to workaround compiler member-count bugs
     struct {
         CData/*0:0*/ clock;
+        CData/*0:0*/ __PVT___cond0;
+        CData/*0:0*/ __PVT___cond1;
+        CData/*0:0*/ __PVT___do_swap_evens_out0;
+        CData/*0:0*/ __PVT___cond2;
+        CData/*0:0*/ __PVT___cond3;
+        CData/*0:0*/ __PVT___do_swap_evens_out1;
+        CData/*0:0*/ __PVT___do_swap_evens_out2;
+        CData/*0:0*/ __PVT___cond4;
+        CData/*0:0*/ __PVT___cond5;
+        CData/*0:0*/ __PVT___do_swap_evens_out3;
+        CData/*0:0*/ __PVT___do_swap_evens_out4;
+        CData/*0:0*/ __PVT___cond6;
+        CData/*0:0*/ __PVT___cond7;
+        CData/*0:0*/ __PVT___do_swap_evens_out5;
+        CData/*0:0*/ __PVT___do_swap_evens_out6;
+        CData/*0:0*/ __PVT___cond8;
+        CData/*0:0*/ __PVT___cond9;
+        CData/*0:0*/ __PVT___do_swap_evens_out7;
+        CData/*0:0*/ __PVT___do_swap_evens_out8;
+        CData/*0:0*/ __PVT___cond10;
+        CData/*0:0*/ __PVT___cond11;
+        CData/*0:0*/ __PVT___do_swap_evens_out9;
+        CData/*0:0*/ __PVT___do_swap_evens_out10;
+        CData/*0:0*/ __PVT___cond12;
+        CData/*0:0*/ __PVT___cond13;
+        CData/*0:0*/ __PVT___do_swap_evens_out11;
+        CData/*0:0*/ __PVT___do_swap_evens_out12;
+        CData/*0:0*/ __PVT___cond14;
+        CData/*0:0*/ __PVT___cond15;
+        CData/*0:0*/ __PVT___do_swap_evens_out13;
+        CData/*0:0*/ __PVT___do_swap_evens_out14;
+        CData/*0:0*/ __PVT___cond16;
+        CData/*0:0*/ __PVT___cond17;
+        CData/*0:0*/ __PVT___do_swap_evens_out15;
+        CData/*0:0*/ __PVT___do_swap_evens_out16;
+        CData/*0:0*/ __PVT___cond18;
+        CData/*0:0*/ __PVT___cond19;
+        CData/*0:0*/ __PVT___do_swap_evens_out17;
+        CData/*0:0*/ __PVT___do_swap_evens_out18;
+        CData/*0:0*/ __PVT___cond20;
+        CData/*0:0*/ __PVT___cond21;
+        CData/*0:0*/ __PVT___do_swap_evens_out19;
+        CData/*0:0*/ __PVT___do_swap_evens_out20;
+        CData/*0:0*/ __PVT___cond22;
+        CData/*0:0*/ __PVT___cond23;
+        CData/*0:0*/ __PVT___do_swap_evens_out21;
+        CData/*0:0*/ __PVT___do_swap_evens_out22;
+        CData/*0:0*/ __PVT___cond24;
+        CData/*0:0*/ __PVT___cond25;
+        CData/*0:0*/ __PVT___do_swap_evens_out23;
+        CData/*0:0*/ __PVT___do_swap_evens_out24;
+        CData/*0:0*/ __PVT___cond26;
+        CData/*0:0*/ __PVT___cond27;
+        CData/*0:0*/ __PVT___do_swap_evens_out25;
+        CData/*0:0*/ __PVT___do_swap_evens_out26;
+        CData/*0:0*/ __PVT___cond28;
+        CData/*0:0*/ __PVT___cond29;
+        CData/*0:0*/ __PVT___do_swap_evens_out27;
+        CData/*0:0*/ __PVT___do_swap_evens_out28;
+        CData/*0:0*/ __PVT___cond30;
+        CData/*0:0*/ __PVT___cond31;
+        CData/*0:0*/ __PVT___do_swap_evens_out29;
+        CData/*0:0*/ __PVT___do_swap_evens_out30;
+    };
+    struct {
+        CData/*0:0*/ __PVT___cond32;
+        CData/*0:0*/ __PVT___cond33;
+        CData/*0:0*/ __PVT___do_swap_evens_out31;
+        CData/*0:0*/ __PVT___do_swap_evens_out32;
+        CData/*0:0*/ __PVT___cond34;
+        CData/*0:0*/ __PVT___cond35;
+        CData/*0:0*/ __PVT___do_swap_evens_out33;
+        CData/*0:0*/ __PVT___do_swap_evens_out34;
+        CData/*0:0*/ __PVT___cond36;
+        CData/*0:0*/ __PVT___cond37;
+        CData/*0:0*/ __PVT___do_swap_evens_out35;
+        CData/*0:0*/ __PVT___do_swap_evens_out36;
+        CData/*0:0*/ __PVT___cond38;
+        CData/*0:0*/ __PVT___cond39;
+        CData/*0:0*/ __PVT___do_swap_evens_out37;
+        CData/*0:0*/ __PVT___do_swap_evens_out38;
+        CData/*0:0*/ __PVT___cond40;
+        CData/*0:0*/ __PVT___cond41;
+        CData/*0:0*/ __PVT___do_swap_evens_out39;
+        CData/*0:0*/ __PVT___do_swap_evens_out40;
+        CData/*0:0*/ __PVT___cond42;
+        CData/*0:0*/ __PVT___cond43;
+        CData/*0:0*/ __PVT___do_swap_evens_out41;
+        CData/*0:0*/ __PVT___do_swap_evens_out42;
+        CData/*0:0*/ __PVT___cond44;
+        CData/*0:0*/ __PVT___cond45;
+        CData/*0:0*/ __PVT___do_swap_evens_out43;
+        CData/*0:0*/ __PVT___do_swap_evens_out44;
+        CData/*0:0*/ __PVT___cond46;
+        CData/*0:0*/ __PVT___cond47;
+        CData/*0:0*/ __PVT___do_swap_evens_out45;
+        CData/*0:0*/ __PVT___do_swap_evens_out46;
+        CData/*0:0*/ __PVT___cond48;
+        CData/*0:0*/ __PVT___cond49;
+        CData/*0:0*/ __PVT___do_swap_evens_out47;
+        CData/*0:0*/ __PVT___do_swap_evens_out48;
+        CData/*0:0*/ __PVT___cond50;
+        CData/*0:0*/ __PVT___cond51;
+        CData/*0:0*/ __PVT___do_swap_evens_out49;
+        CData/*0:0*/ __PVT___do_swap_evens_out50;
+        CData/*0:0*/ __PVT___cond52;
+        CData/*0:0*/ __PVT___cond53;
+        CData/*0:0*/ __PVT___do_swap_evens_out51;
+        CData/*0:0*/ __PVT___do_swap_evens_out52;
+        CData/*0:0*/ __PVT___cond54;
+        CData/*0:0*/ __PVT___cond55;
+        CData/*0:0*/ __PVT___do_swap_evens_out53;
+        CData/*0:0*/ __PVT___do_swap_evens_out54;
+        CData/*0:0*/ __PVT___cond56;
+        CData/*0:0*/ __PVT___cond57;
+        CData/*0:0*/ __PVT___do_swap_evens_out55;
+        CData/*0:0*/ __PVT___do_swap_evens_out56;
+        CData/*0:0*/ __PVT___cond58;
+        CData/*0:0*/ __PVT___cond59;
+        CData/*0:0*/ __PVT___do_swap_evens_out57;
+        CData/*0:0*/ __PVT___do_swap_evens_out58;
+        CData/*0:0*/ __PVT___cond60;
+        CData/*0:0*/ __PVT___cond61;
+        CData/*0:0*/ __PVT___do_swap_evens_out59;
+        CData/*0:0*/ __PVT___do_swap_evens_out60;
+        CData/*0:0*/ __PVT___cond62;
+        CData/*0:0*/ __PVT___do_swap_evens_out61;
+        CData/*0:0*/ __PVT___wF_do_swap_odds0;
         IData/*31:0*/ rData_0;
+    };
+    struct {
         IData/*31:0*/ rData_1;
         IData/*31:0*/ rData_2;
         IData/*31:0*/ rData_3;
@@ -90,8 +220,6 @@ VL_MODULE(Vevenoddtranspose_evenoddtranspose) {
         IData/*31:0*/ rData_60;
         IData/*31:0*/ rData_61;
         IData/*31:0*/ rData_62;
-    };
-    struct {
         IData/*31:0*/ rData_63;
     };
     
@@ -114,6 +242,7 @@ VL_MODULE(Vevenoddtranspose_evenoddtranspose) {
   public:
     static void _initial__TOP__evenoddtranspose__2(Vevenoddtranspose__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__evenoddtranspose__1(Vevenoddtranspose__Syms* __restrict vlSymsp);
+    static void _settle__TOP__evenoddtranspose__3(Vevenoddtranspose__Syms* __restrict vlSymsp) VL_ATTR_COLD;
   private:
     static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
